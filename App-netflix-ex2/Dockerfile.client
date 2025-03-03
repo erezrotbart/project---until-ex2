@@ -1,0 +1,10 @@
+FROM gcc:latest
+
+# Install Python
+RUN apt-get update && apt-get install -y python3 python3-pip
+
+WORKDIR /usr/src/App-netflix/client
+COPY src/client/client.py /usr/src/App-netflix/client/
+
+# Run the client and connect to the server
+CMD ["python3", "client.py", "server", "8080"]

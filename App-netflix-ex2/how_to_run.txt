@@ -1,0 +1,18 @@
+docker-compose build       #builds docker#
+docker-compose run tests   #this runs the tests#
+docker-compose up server   #this runs the server#
+docker-compose run client  #this runs the client (in a new terminal)#
+
+
+compile server:
+(To run without docker follow the instructions in src\server\clienthancler.cpp lines 18 and 19)
+
+g++ -o server_cpp src/User/user.cpp src/Movie/movie.cpp src/Storage_Logic/FileDataStorage.cpp src/Movie/AddWatchedMovies.cpp src/Movie/GetWatchedMovies.cpp src/App.cpp src/Commands/Help.cpp src/Commands/recommended.cpp src/User/GetAllUsers.cpp src/server/ClientHandler.cpp src/server/server.cpp src/server/Executor.cpp src/Commands/GET.cpp src/Commands/DELETE.cpp src/Commands/PATCH.cpp src/Commands/POST.cpp -std=c++17
+
+run server:
+./server_cpp <port number>
+
+then open new terminal and run the client:
+python3 src/client/client.py 127.0.0.1 <port number>
+
+then you can interact

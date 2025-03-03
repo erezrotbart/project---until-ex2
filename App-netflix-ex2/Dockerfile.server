@@ -1,0 +1,21 @@
+FROM gcc:latest
+
+RUN apt-get update && apt-get install -y \
+    g++ \
+    cmake \
+    make
+    
+WORKDIR /usr/src/App-netflix
+COPY . .
+
+
+# Create a build directory and compile the application
+RUN mkdir -p build
+WORKDIR /usr/src/App-netflix/build
+RUN cmake .. && make
+
+# Expose the port the server will use (default: 8080)
+EXPOSE 8080
+
+# Run the server on port 8080
+CMD ["./runApp", "8080"]
